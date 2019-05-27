@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0,minimal-ui:ios">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>todolist</title>
+    <link rel="stylesheet" href="">
+    <script src="js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <div>
+            <input type="text" v-model="inputValue">
+            <button @click="handleSubmit">提交</button>
+        </div>
+        <ul>
+      <!--       <li v-for="(item,index) of list" :key="index">{{item}}</li> -->
+            <todo-item v-for="(item,index) of list" :content="item" :index="index" @delete="handelDelete"></todo-item>
+        </ul>
+    </div>
+    <script>
+        //全局组件 每个组件都是vue实例　每个组件都可以添加　事件　属性　数据
+        Vue.component('todo-item',{
+            props:['content','index'],
+            template:'<li @click="handleClick">{{content}}{{index}}</li>',
+            methods:{
+                handleClick:function(){
+                    //alert('clicked')
+                    this.$emit('delete',this.index)
+                }
+            }
+        }) 
+        // 局部组件ss
+ /*        var TodoItem ={
+            template:'<li>item</li>'
+        } */
+        new Vue({
+            el:"#root",
+             // 局部组件吊用
+/*             components:{
+                'todo-item':TodoItem
+            }, */
+            data:{
+                inputValue:'',
+                list:[]
+            },
+            methods:{
+                handleSubmit:function(){
+                    this.list.push(this.inputValue),
+                    this.inputValue=""
+                },
+                handelDelete:function(index){
+                   // alert("delete")
+                   this.list.splice(index,1)
+                }
+            }
+
+        })
+    </script>
+</body>
+
+</html>

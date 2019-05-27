@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        <script src="js/vue.js"></script>
+    </head>
+    <body>
+        <div id="root">
+            姓：<input v-model="firstName" type="text"><br/>
+            名：<input v-model="lastName" type="text"><br />
+            <div>{{fullName}}</div>
+            <div>{{count}}</div>
+        </div>
+        <script>
+            new Vue({
+                el:"#root",
+                data:{
+                    firstName:'',
+                    lastName:'',
+                    count:0
+                },
+                //计算属性
+                computed:{
+                    fullName:function(){
+                        return this.firstName + '' + this.lastName
+                    }
+                },
+                //事件的监听
+                watch: {
+                    firstName:function(){
+                        this.count ++
+                    },
+                    lastName:function(){
+                        this.count ++
+                    },
+                    fullName:function(){
+                         this.count++
+                    }
+                }
+            })
+        </script>
+    </body>
+</html>
