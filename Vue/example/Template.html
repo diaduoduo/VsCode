@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0,minimal-ui:ios">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Template 制作模版</title>
+    <link rel="stylesheet" href="">
+    <script src="../assets/js/vue.js"></script>
+</head>
+
+<body>
+    <h1>Template 制作模版</h1>
+    <hr>
+    <div id="app">
+        {{message}}
+    </div>
+    <template id="dd2">
+        <h2 style="color:red">我是template标签模板</h2>
+    </template>、
+    <script type="x-template" id="dd3">
+        <h2 style="color:red">我是script标签模板</h2>
+    </script>
+    <script>
+        //实例化
+        var app = new Vue({
+            el: "#app",
+            data: {
+                //放参数
+                message: 'hello world1111'
+            },
+            //template:"#dd2"//挂载一下
+            template: "#dd3"//挂载一下
+       /*      template: `
+                <h2 style="color:red">我是选项模板</h2>
+                ` */
+            
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0,minimal-ui:ios">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Component 初识组件</title>
+    <link rel="stylesheet" href="">
+    <script src="../assets/js/vue.js"></script>
+</head>
+
+<body>
+    <!-- 
+        组件组件组件非常重要
+        组件　html中不存在的标签
+        组件　跟指令区别
+        指令　－－绑定在属性上的　v-jspang
+        组件　－－定义标签
+        angl 指令
+        vue 组件
+        
+     -->
+    <h1>Component 初识组件</h1>
+    <hr>
+    <div id="app">
+   <!--      <jspang></jspang> -->
+        <panda></panda>
+    </div>
+    <div id="ppa">
+        <!-- <jspang></jspang> -->
+        <panda></panda>
+    </div>
+    <script>
+     //在外面申明我们的局部组件
+     //父子组件
+        var city = {
+            template: `
+            <div style="color:blue">cichuan of china</div>
+        `
+        }
+        var pandaComponent = {
+            template:`
+                <div>
+                    <p>Pand from china</p>
+                    <city></city>
+                </div>
+                `,
+            components:{
+                "city":city
+            }
+        }
+
+        //实例化 
+        var app = new Vue({
+            el: "#app",
+            components:{
+             "panda": pandaComponent //标签
+            }
+        })
+    </script>
+</body>
+
+</html>

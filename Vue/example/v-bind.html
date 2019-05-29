@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0,minimal-ui:ios">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>v-bind实例</title>
+    <link rel="stylesheet" href="">
+    <script src="../assets/js/vue.js"></script>
+</head>
+
+<body>
+    <!-- 标签属性 -->
+    <h1>v-bind</h1>
+    <hr>
+    <div id="app">
+        <!-- {{message}} -->
+       <p><img v-bind:src="imgSrc" alt=""></p> 
+        <!--v-bind:href 简写 :href -->
+        <a :href="webUrl" target="_blank">技术支持</a>
+        <br>
+        <div :class="className">1、绑带 Class</div>
+        <div :class="{classA:isOk}">2、绑带 Class判断</div>
+        <div :class="[classA,classB]">3、绑带 Class中数组</div>
+        <div :class="isOk?classA:classB">4、绑带 Class中三元运算浮</div>
+        <hr>
+        <div>
+            <input type="checkbox" id="isOk" v-model="isOk">
+            <label for="isOk">isok=={{isOk}}</label>
+        </div>
+        <hr>
+        <div :style="{color:red,fontSize:font}">5、绑带style</div>
+        <div :style="styleObject">5、对象绑带style</div>
+    </div>
+    <style>
+        .classA{
+            color:red;
+        }
+        .classB{
+            font-size:150%
+        }
+    </style>
+    <script>
+        //实例化
+        var app = new Vue({
+            el: "#app",
+            data: {
+                //放参数
+                imgSrc:"https://www.baidu.com/img/baidu_jgylogo3.gif",
+                webUrl:"http://jspang.com",
+                className:'classA',
+                isOk:false,
+                classA:'classA',
+                classB:'classB',
+                red:'red',
+                font:'20px',
+                styleObject:{
+                    color:'green',
+                    fontSize:"150%"
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
