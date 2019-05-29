@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0,minimal-ui:ios">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>v-text$v-html</title>
+    <link rel="stylesheet" href="">
+    <script src="../assets/js/vue.js"></script>
+</head>
+
+<body>
+    <h1>v-text & v-html</h1>
+    <hr>
+    <div id="app">
+       <span>{{message}}</span>
+       <span v-text="message"></span>
+       <span v-html="duoduo"></span>
+       <span v-text="duoduo"></span>
+       
+
+    </div>
+    <script>
+        //实例化
+        var app = new Vue({
+            el: "#app",
+            data: {
+                //放参数
+                message: 'hello world1111',
+                duoduo:"<h2>duoduo</h2>"
+            }
+        })
+    </script>
+</body>
+
+</html>
