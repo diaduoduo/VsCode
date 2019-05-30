@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0,minimal-ui:ios">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>computed Option 计算选项</title>
+    <link rel="stylesheet" href="">
+    <script src="../assets/js/vue.js"></script>
+</head>
+
+<body>
+    <h1>computed Option 计算选项</h1>
+    <hr>
+    <div id="app">
+        <p>{{newPrice}}</p>
+        <ul>
+            <li v-for= "itme in reversNews">{{itme.title}}=={{itme.data}}</li>
+        </ul>
+    </div>
+    <script>
+        var newsList = [
+            {title:"1.免费视频离线高清版下载（共288集）",data:"2018-9-8"},
+            {title:"2.免费视频离线高清版下载（共288集）",data:"2018-9-10"},
+            {title:"3.免费视频离线高清版下载（共288集）",data:"2018-9-11"},
+            {title:"4.免费视频离线高清版下载（共288集）",data:"2018-9-13"},
+            {title:"5.免费视频离线高清版下载（共288集）",data:"2018-9-114"},
+        ]
+        //实例化
+        var app = new Vue({
+            el: "#app",
+            data: {
+                //放参数
+                price:100,
+                newsList:newsList
+            },
+            computed:{
+                newPrice:function(){
+                    return this.price="¥" + this.price +"元"
+                },
+                reversNews:function(){
+                    return this.newsList.reverse();
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

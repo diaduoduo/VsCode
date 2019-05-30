@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0,minimal-ui:ios">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>hellow实例入门-实例属性-3world</title>
+    <link rel="stylesheet" href="">
+    <script src="../assets/js/vue.js"></script>
+</head>
+
+<body>
+    <h1>实例入门-实例属性-3</h1>
+    <hr>
+    <div id="app">
+        {{num}}
+        <p>
+            <button type="button" @click="add">添加</button>
+        </p              >
+
+    </div>
+            <p>
+                <button type="button" onclick="reduce()">减</button>
+            </p>
+            <p>
+                <button type="button" onclick="reduceOnce()">减一次</button>
+            </p>
+            <p>
+                <button type="button" onclick="off()">关闭事件</button>
+            </p>
+    <script>
+        //构造器里面
+        //实例化
+        var app = new Vue({
+            el: "#app",
+            data: {
+                //放参数
+                num: 1
+            },
+            methods:{
+                add:function(){
+                    this.num++
+                }
+            }
+        });
+        app.$on("reduce",function(){
+            console.log("执行了 reduce方法")
+            this.num --;
+        })
+
+        app.$once("reduceOnce",function (){
+            console.log("只执行一次")
+            this.num--
+        })
+        
+        function reduce(){
+            app.$emit("reduce")
+        }
+
+        function reduceOnce() {
+            app.$emit("reduceOnce")
+        }
+        function off(){
+            app.$off("reduce")
+        }
+    </script>
+</body>
+
+</html>

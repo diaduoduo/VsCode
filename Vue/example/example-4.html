@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0,minimal-ui:ios">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>实例入门-实例属性-4</title>
+    <link rel="stylesheet" href="">
+    <script src="../assets/js/vue.js"></script>
+</head>
+
+<body>
+    <h1>实例入门-实例属性-4</h1>
+    <hr>
+    <div id="app">
+        <jspang>
+            <span slot="blogUrl">{{jspangData.blogUrl}}</span>
+            <span slot="netName">{{jspangData.netName}}</span>
+            <span slot="skill">{{jspangData.skill}}</span>
+        </jspang>
+    </div>
+    <!-- 模板里写接收值  -->
+    <template id="tep">
+        <div>
+    <p>博客地址:<slot name="blogUrl"></slot></p>
+    <p>网名:<slot name="netName"></slot></p>
+    <p>技术类型:<slot name="skill"></slot></p>
+        </div>
+    </template>
+    <script>
+        //声明一个模板
+        var jspang={
+            template:`#tep`
+        }
+        //实例化
+        var app = new Vue({
+            el: "#app",
+            data: {
+                //放参数
+                jspangData:{
+                    blogUrl:"htpp://jspang.com",
+                    netName:'jspang',
+                    skill:"web前端"
+                }
+            },
+            //组件
+            components:{
+                "jspang":jspang
+            }
+        })
+    </script>
+</body>
+
+</html>

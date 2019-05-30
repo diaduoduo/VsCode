@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0,minimal-ui:ios">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Watch 选项 监控数据</title>
+    <link rel="stylesheet" href="">
+    <script src="../assets/js/vue.js"></script>
+</head>
+
+<body>
+    <h1>Watch 选项 监控数据</h1>
+    <hr>
+    <div id="app">
+       <p>
+           今日温度：{{wendu}} 度
+       </p>
+        <p>
+            穿衣建议：{{chuanyi}}
+        </p>
+        <p>
+            <button @click="shengao"　type="button">升高温度</button>
+            <button @click="jiangshao" type="button">降低温度</button>
+        </p>
+    </div>
+    <script>
+        //声明一个数组
+        var changyiarray=[
+            '体恤短袖',
+            '夹克长群',
+            '棉衣羽绒服',
+        ]
+
+        //实例化
+        var app = new Vue({
+            el: "#app",
+            data: {
+                //放参数
+                wendu: 14,
+                chuanyi:'夹克长群'
+            },
+            methods:{
+                shengao:function(){
+                    this.wendu+=5;
+                },
+                jiangshao:function(){
+                    this.wendu-=5
+                }
+            },
+            watch:{
+                wendu:function(newVal,odlVal){
+/*                     if(newVal>=26){
+                        this.chuanyi= changyiarray[0];
+                    } else if(newVal<26  && newVal>0){
+                         this.chuanyi = changyiarray[1];;
+                    }　else {
+                        this.chuanyi= changyiarray[2];
+                    } */
+                }
+            }
+        })
+        //构造器外面  $+watchgou
+         app.$watch('wendu',function(newVal,oldVal){
+             if (newVal >= 26) {
+                 this.chuanyi = changyiarray[0];
+             } else if (newVal < 26 && newVal > 0) {
+                 this.chuanyi = changyiarray[1];;
+             } else {
+                 this.chuanyi = changyiarray[2];
+             }
+         })
+    </script>
+</body>
+
+</html>                                                                              

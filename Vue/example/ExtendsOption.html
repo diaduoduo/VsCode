@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0,minimal-ui:ios">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Mixins 混入选项操作</title>
+    <link rel="stylesheet" href="">
+    <script src="../assets/js/vue.js"></script>
+</head>
+
+<body>
+    <h1>Mixins 混入选项操作</h1>
+    <hr>
+    <div id="app">
+        {{num}}
+        ${num}
+        <p>
+            <button @click="add">添加</button>
+        </p>
+    </div>
+    <script>
+        var extendsObj ={
+            updated:function(){
+                console.log("我是扩展的updated")
+            },
+            methods:{
+                add: function () {
+                    console.log("我是被扩展的方法")
+                    this.num++;
+                }
+            }
+        }
+        //实例化
+        var app = new Vue({
+            el: "#app",
+            data: {
+                //放参数
+                num: 1
+            },
+            methods: {
+                add: function () {
+                    console.log("我是原生的方法")
+                    this.num++;
+                }              
+            },
+            updated: function () {
+                console.log("我是原生的updated")
+            },
+             extends: extendsObj,
+             delimiters:['${','}']
+        })
+    </script>
+</body>
+
+</html>
