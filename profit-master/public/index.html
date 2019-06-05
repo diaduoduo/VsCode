@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <title>我的收益</title>
+    <script>
+      function setRem() {
+        document.documentElement.style.fontSize = document.documentElement.clientWidth / 7.5 + "px";
+      }
+
+      setRem();
+      window.onresize = setRem;
+      function getQueryString(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) return decodeURIComponent(r[2]);
+        return null;
+      }
+
+      let token=getQueryString("token")||'';
+      let userId=getQueryString("userId")||0;
+      let phone=getQueryString("phone")||'';
+      window.sessionStorage.setItem("userId",userId);
+      window.sessionStorage.setItem("token",token);
+      window.sessionStorage.setItem("phone",phone);
+    </script>
+  </head>
+  <body>
+    <noscript>
+      <strong>We're sorry but ant_design doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+    </noscript>
+    <div id="app"></div>
+    <!-- built files will be auto injected -->
+  </body>
+</html>
