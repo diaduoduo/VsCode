@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/diaduoduo/VsCode/issues"
   },
-  "homepage": "https://github.com/diaduoduo/VsCode#readme"
+  "homepage": "https://github.com/diaduoduo/VsCode#readme",
+  "dependencies": {
+    "vue-cli": "^2.9.6"
+  }
 }
