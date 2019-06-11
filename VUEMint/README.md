@@ -1,4 +1,4 @@
-# smlie
+# vuemint
 
 > A Vue.js project
 

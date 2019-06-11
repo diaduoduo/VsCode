@@ -8,9 +8,9 @@
     export default {
         data() {
             return {
-                msg: 'ShoppingMall'
+                msg: "sdfl"
             }
-        },   
+        },
     }
 </script>
 
