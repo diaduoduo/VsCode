@@ -13,9 +13,11 @@
 </head>
 
 <body>
-    <a @click:prevent="entername='login'">登录</a>
-    <a @click:prevent="entername='regin'">注册</a>
-    <component :is='entername'></component>
+<div id="app2">
+        <a href="#" @click.prevent="entername='login'">登录</a>
+        <a href="#" @click.prevent="entername='regin'">注册</a>
+        <component :is='entername'></component>
+</div>
     <script>
         Vue.component('login', {
             template: '<h1>登录组件</h1>'
@@ -28,7 +30,11 @@
             data: {
                 entername: ""
             },
-            methods: {}
+            methods: {
+                entername(){
+                    alert("sdf")
+                }
+            }
         })
     </script>
 </body>
