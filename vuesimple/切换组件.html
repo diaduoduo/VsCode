@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0,minimal-ui:ios">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="">
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src=""></script>
+</head>
+
+<body>
+    <a @click:prevent="entername='login'">登录</a>
+    <a @click:prevent="entername='regin'">注册</a>
+    <component :is='entername'></component>
+    <script>
+        Vue.component('login', {
+            template: '<h1>登录组件</h1>'
+        })
+        Vue.component('regin', {
+            template: '<h1>注册组件</h1>'
+        })
+        var vm = new Vue({
+            el: "#app2",
+            data: {
+                entername: ""
+            },
+            methods: {}
+        })
+    </script>
+</body>
+
+</html>

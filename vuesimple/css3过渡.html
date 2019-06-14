@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0,minimal-ui:ios">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://raw.githubusercontent.com/daneden/animate.css/master/animate.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <style>
+        
+        .v-enter,.v-leave-to{
+            opacity: 0;
+            transform: translateX(200px)
+        }
+        .v-enter-active,.v-leave-active{
+            transition:all 0.9s ease;
+        }
+
+        .my-enter,.my-leave-to{
+        opacity: 0;
+        transform: translateX(-200px)
+        }
+        .my-enter-active,.my-leave-active{
+        transition:all 0.9s ease;
+        }
+        .ball{
+            width: 50px;
+            height: 50px;
+            background:red;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="ball"></div>
+        <button>点击</button>
+
+
+        <input type="button" value="toggle" @click="flag=!flag">
+        <input type="button" value="toggle" @click="flag2=!flag2">
+        <input type="button" value="toggle" @click="flag3=!flag3">
+        <!--  transition 元素 是官方提供的-->
+<transition>
+        <h3 v-if="flag">
+            这是一个h3
+        </h3>
+</transition>
+<transition name="my">
+    <h2 v-if="flag2">
+        这是一个h3
+    </h2>
+</transition>
+
+<transition enter-active-class="animated bounceIn" leave-active-class="animated bounceOut">
+    <h2 v-if="flag3">
+        这是一个h3
+    </h2>
+</transition>
+<!-- 
+duration 立场　入场　相同时间
+
+ -->
+<transition enter-active-class=" bounceIn" leave-active-class=" bounceOut" :duration="200">
+    <h2 class="animated" v-if="flag3">
+        这是一个h3
+    </h2>
+</transition>
+
+<transition enter-active-class=" bounceIn" leave-active-class=" bounceOut" :duration="{enter:200,leave:400}" }>
+    <h2 class="animated" v-if="flag3">
+        这是一个h3
+    </h2>
+</transition>
+
+
+
+    </div>
+    <script>
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                flag:false,
+                flag2:false,
+                flag3:false,
+            },
+            methods: {
+
+            }
+        })
+    </script>
+</body>
+
+</html>

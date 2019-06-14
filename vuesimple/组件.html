@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0,minimal-ui:ios">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>组件化</title>
+    <link rel="stylesheet" href="">
+    <script src=""></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+
+<body>
+    <div id="app">
+        <mycom2></mycom2>
+        <mycom3></mycom3>
+
+    </div>
+    <template id="tmp1">
+        <div>
+            <h2>直接componentsdsdfsdfsfsdfsdfsdf</h2>
+        </div>
+    </template>
+    <template id="tmp2">
+        <div>
+            <h1>这是私有的login组件</h2>
+        </div>
+    </template>
+    <template id="tmp3">
+        <div>
+            <input type="button" value="添加" @click="add">
+            <h3>{{count}}</h3>
+        </div>
+    </template>
+
+    <template id="tmp4">
+        <div>
+            <input type="button" value="添加222" @click="add">
+            <h3>{{count}}</h3>
+        </div>
+    </template>
+
+
+    <div id="app2">
+        <mycom3></mycom3>
+        <login></login>
+        <mycom></mycom>
+        <mycom4></mycom4>
+        <mycom5></mycom5>
+
+
+            <a @click:prevent="entername='login'">登录</a>
+            <a @click:prevent="entername='regin'">注册</a>
+
+
+        <component :is='login'></component>
+    </div>
+</body>
+<script>
+
+    //学习了几个vue提供的标签
+    /* 　component template transition transition-group */
+    //全局组件
+    //定义两个组件一个登录一个是注册
+    Vue.component('login', {
+        template: '<h1>登录组件</h1>'
+    })
+    Vue.component('regin', {
+        template: '<h1>注册组件</h1>'
+    })
+    Vue.component('mycom2', {
+        template: '<div><h3>直接component</h3><span>sdf</span></div>'
+    })
+    Vue.component("mycom3", {
+        template: '#tmp1'
+    })
+    //组件可以有自己的data数据　２　组件的data跟实例data有点不一样
+    Vue.component('mycom', {
+        template: '<h3>直接component－－－{{msg}}</h3>',
+        data: function () {
+            return {
+                msg: '组件中　data定义的数据'
+            }
+        }
+    })
+    //　定义一个组件在里同写效果
+
+    Vue.component('mycom4', {
+        template: '#tmp3',
+        data: function () {
+            return {
+                count: 0
+            }
+        },
+        methods: {
+            add() {
+                this.count++
+            }
+        },
+    })
+    var dataobj = { count: 0 }
+    Vue.component('mycom5', {
+        template: '#tmp4',
+        data: function () {
+            return dataobj
+        },
+        methods: {
+            add() {
+                this.count++
+            }
+        }
+    })
+    var vm = new Vue({
+        el: "#app",
+        data: {},
+        methods: {}
+    })
+
+    var vm = new Vue({
+        el: "#app2",
+        data: {
+            entername:""
+        },
+        methods: {}
+    })
+</script>
+
+</html>

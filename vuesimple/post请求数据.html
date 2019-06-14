@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0,minimal-ui:ios">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="">
+    <script src=""></script>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" v-modle="name">
+        <label for="">
+            <button class="add" @click="add">添加</button>
+        </label>
+        <hr>
+        <table>
+            <thead>
+                <th>id</th>
+                <th>name</th>
+                <th>操作</th>
+            </thead>
+            <tbody>
+                <tr v-for="item in list" :key="item.id">
+                    <td>{{itme.id}}</td>
+                    <td>{{itme.name}}</td>
+                    <td><a　href="#" @click.prevent=del(item.id)>删除</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script>
+        Vue.http.options.root = 'http://vue.studyit.io/';
+        Vue.http.options.emulateJSON = true;
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                name: "",
+                list: []
+            },
+            methods:{
+                //结构接数据
+                getListInfo(){
+                    this.$http.get("api/gitlunbo").then(result =>{
+                        var result = result.body;
+                        if(result === 0){
+                            this.list=result.mesage
+                        } else {
+                            alert("获取失败")
+                        }
+                    })
+                },
+                add(){
+                    this.$http.post('api/addproduct',{name:this.name}).then(result =>{
+                        if(result.body.status ===0){
+                            this.getListInfo();
+                            //然后清空　name
+                            this.name = " "
+                        }
+                    })
+                },
+                del(){
+                    this.$http.get("api/" + id ).then(result =>{
+                        if (result.body.status === 0){
+                            this.getListInfo()
+                        } else {
+                            alert("删除失败")
+                        }
+                    })
+                }
+            },
+            created:{
+                getListInfo()
+            }
+        })
+    </script>
+</body>
+
+</html>

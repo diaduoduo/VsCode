@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0,minimal-ui:ios">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="">
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src=""></script>
+    <style>
+        li{
+            width: 100%;
+        }
+        .v-enter,
+        .v-leave-to {
+            opacity: 0;
+            transform: translateX(200px)
+        }
+
+        .v-enter-active,
+        .v-leave-active {
+            transition: all 0.9s ease;
+        }
+
+        .v-move {
+            transition: all .6s ease
+        }
+
+        .v-leave-active {
+            position: absolute
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" v-model="id">
+        <input type="text" v-model="name">
+        <button @click="add">添加</button>
+
+        <transition-group appear tag="ul">
+            <li v-for="(item,i) in list" :key="item.id" @click="del(i)">
+                {{item.id}}===={{item.name}}
+            </li>
+        </transition-group>
+
+    </div>
+</body>
+<script>
+    var vm = new Vue({
+        el: "#app",
+        data: {
+            id: "",
+            name: "",
+            list: []
+
+        },
+        methods: {
+            add() {
+                this.list.push({ id:this.id,name:this.name})
+                this.id=this.name=""
+            },
+            del(i) {
+                this.list.splice(i,1)
+            }
+        }
+
+    })
+</script>
+
+</html>

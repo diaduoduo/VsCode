@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		.red{
+			color: red;
+		}
+        .showed{
+            display: none;
+
+        }
+	</style>
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+
+</head>
+<body>
+    <div id="app">
+        <div>
+            <h3>添加品牌</h3>
+            {{msg | msgFormat}}
+        </div>
+        <div>
+            <label for="">
+                id
+                <input type="text"　v-model="id">
+            </label>
+            <label for="">
+            name
+            <input type="text" v-model="name" @keyup.enter="add">
+            </label>
+            <label for="">
+                <input type="button" value="添加" @click="add">
+            </label>
+
+                        <label for="">
+                            搜索
+                            <!-- vue所有的指令　在调用　的时候都是用v开头　 -->
+                            <input type="text" id="search" v-model="keywords" v-focus v-color="'blue'">
+                        </label>
+
+
+        </div>
+        <table>
+            <tbody>
+                <th>id</th>
+                <th>name</th>
+                <th>ctime</th>
+                <th>operation</th>
+            </tbody>
+            <tbody>
+                <tr v-for="item in search(keywords)">
+                    <td>{{item.id}}</td>
+                    <td>{{item.name}}</td>
+                    <td>{{item.ctime | dateFormat}}</td>
+                    <td><a href="#" @click.prevent="del(item.id)">删除</a></td>
+                    
+                </tr>
+                <tr :class="{showed:flag}">
+                    <td colspan="4">没有数据</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div id="app2">
+        <h2 v-fontWeight="'900'">{{dt | dateFormat}}</h2>
+    </div>
+    <div id="app3">
+        <h2　id="h3">
+            {{msg}}
+        </h2>
+        <input type="button" value="show" @click="show">
+        <input type="button" value="show" @click="msg!=false">
+    </div>
+    <script>
+        //生命周期
+        var vm  = new Vue({
+            el: '#app3',
+            data: {
+                msg: 'ok'
+            },
+            methods: {
+                show() {
+                    console.log('执行了show 方法')
+                }
+            },
+            beforeCreate() {
+                console.log(this.msg)　//undefined
+                //beforeCreate生命周期函数　执行的时候　data methods 数据还没有初始化
+            },
+            created() {//created生命周期函数　执行的时候　data methods 数据已经初始化　如果要调用　methods中的方法，或者操作　data 数据最早只能在created里修改　　
+                 console.log(this.msg)
+                 this.show()　
+            },
+            beforeMount(){//这个是遇到第三个生命期  ,表示　模板已经在内存中编辑完成了，但是尙未把模板渲染到页面中
+            //console.log(document.getElementById('h3').innerHTML)
+            //在beforeMount　执行的时候　页面中的元素，还没有被真正替换过来，只是之前写的一些模板字符串
+
+            },
+            mounted(){　
+            
+            //第四个生命周期函数　表示,内存中的模板，已经真实的挂载到页面中，用户可以看到渲染好的页面了
+//console.log(document.getElementById('h3').innerHTML)
+
+//mounted是实例创建期间的最后一个生命周期函数，当执行完mounted　就表示　实例已经被完全创建好了　此时　如果没有其他操作　这个实例　就静静的趟在内存中　一动不动
+            },
+            beforeUpdate() {//这时候表示我们界面还没有被更新　数据肯定跟新了
+            // console.log(document.getElementById('h3').innerHTML)
+            },
+        })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //　自定义全局指令
+        Vue.directive('focus',{
+            bind: function (el){//绑定到元素　会立即执行这个bind函数　只执行一次
+               // el.focus();
+            },
+            inserted: function(el){//插入到dom中的时候　会执行inserted　只触发一次
+el.focus();
+//和js行为有关的操作　
+            },
+            updated: function(){//　当vnode更新的时候　会执行updated　可能会触发多次
+
+            }
+        })
+/*         Vue.directive('color',{
+            bind: function(el){
+                el.style.color = 'red'
+                //　和样式相关的操作，
+            }
+        }) */
+        Vue.directive('color',{
+            bind: function(el,binding){
+                el.style.color =  binding.value
+                //　和样式相关的操作，
+            }
+        })
+/*         Vue.filter("msgFormat",function(msg){
+        return msg.replace('单纯','邪恶')
+        }) */
+        //可以写正则
+        Vue.filter("msgFormat",function(msg){
+        return msg.replace(/单纯/g,'邪恶')
+        });
+        // 全局的过滤器　进行时间格式化
+        Vue.filter('dateFormat',function　(dateStr,pattern=""){
+            var dt = new Date(dateStr)
+            //yyyy-mm-dd
+            var y = dt.getFullYear()
+            var m =( dt.getMonth() + 1).toString().padStart(2,'0')
+            var d = dt.getDate().toString().padStart(2,'0')
+            return `${y}-${m}-${d}`
+
+            if(pattern.toLowerCase() === 'yyyy-mm-dd'){
+                return `${y}-${m}-${d}`
+            } else {
+               var hh = dt.getHours().toString().padStart(2,'0')
+               var mm = dt.getMinutes().toString().padStart(2,'0')
+               var ss = dt.getSeconds().toString().padStart(2,'0')
+
+               return `${y}-${m}-${d} ${hh}-${mm}-${ss}`
+            }
+        })
+
+/*   
+传参 {{msg | msgFormat(疯狂)}}
+    Vue.filter("msgFormat",function(msg，arg){
+        return msg.replace('单纯',arg)
+        }) */
+/* {{msg | msgFormat('疯狂','疯狂123') | test }}
+        Vue.filter('test',function(msg){
+            return msg + '=============='
+        }) */
+        var vm2 = new Vue({
+            el:"#app2",
+            data:{
+                dt: new Date()
+            },
+            filters: {//定义私有过滤器
+                    dateFormat:function(dateStr,pattern = ""){
+                    var dt = new Date(dateStr)
+                    //yyyy-mm-dd
+                    var y = dt.getFullYear()
+                    var m = dt.getMonth() + 1
+                    var d = dt.getDate()
+                    return `${y}-${m}-${d}`
+
+                    if(pattern.toLowerCase() === 'yyyy-mm-dd'){
+                    return `${y}-${m}-${d}`
+                    } else {
+                    var hh = dt.getHours()
+                    var mm = dt.getMinutes()
+                    var ss = dt.getSeconds()
+
+                    return `${y}-${m}-${d} ${hh}:${mm}:${ss}`
+                    }
+                    }
+            },
+            directives: {
+                'fontweight': {
+                    bind: function(el,binding){
+                        el.style.fontWeight = binding.value
+                    }
+                }
+            }
+
+        })
+        var vm = new Vue({
+            el:'#app',
+            data: {
+                id: "",
+                name: "",
+                keywords: "",
+                flag: true,
+                msg: "单纯个文化VB",
+                list: [
+                    {id:1,name:'奔驰',ctime:new Date()},
+                    {id:2,name:'奔驰',ctime:new Date()}
+                ]
+            },
+            methods:{
+                add(){
+                    //　１获取id和　name 直接从data获取　
+                    //２　组织出一个对像
+                    //　把这个对像　调用　数组的相关方法，添加到　data里list　
+                    var car = { id: this.id, name: this.name,ctime:new Date()}
+                    this.list.push(car);
+                    this.id="";
+                    this.name=""
+                },
+
+                del(id){
+                    var index = this.list.findIndex(item => {
+                        if(item.id==id){
+                            return true;
+                        }
+                    })
+                    console.log(index)
+                    this.list.splice(index,1)
+                },
+                search(keywords){
+/*                     var newList = []
+                    this.list.forEach(item => {
+                        if(item.name.indexOf(keywords) != -1){
+                            newList.push(item)
+                        }
+                    })
+                    return newList */
+
+                    // 注意 forEach some filter findIndex 对每一香bianli
+/*                     var newList = this.list.filter(item =>{ 
+                        if(item.name.includes(keywords)){
+                            return item
+                        }
+                     })
+
+                     return newList */
+
+                     //直接 return
+
+                    return this.list.filter(item =>{
+                    if(item.name.includes(keywords)){
+                    return item
+                    } else {
+                        //alert("没有数据")
+                        this.flag = false;
+                    }
+                    })
+                }
+            }
+        })
+        /* 
+                Vue.filter("过滤器名称",function(data){
+
+                })
+        
+         */
+
+    </script>
+</body>
+</html>
