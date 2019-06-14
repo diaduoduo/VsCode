@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0,minimal-ui:ios">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+
+<body>
+<div id="app">
+        <cmt-box></cmt-box>
+    
+    <ul class="list-group">
+        <li class="list-group-item" v-for="item in list" :key="item.id">
+            <span class="badge">5</span>
+            {{item.id}}
+            {{item.user}}
+            {{item.content}}
+        </li>
+    </ul>
+    
+</div>
+<template id="tmpl">
+    <div>
+
+        <div class="form-group">
+            <label for="">评论人</label>
+            <input type="text" name="" v-model="user" id="" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="">评论内容</label>
+            
+            <textarea name="" id="input" v-model="content" class="form-control" rows="3" required="required"></textarea>
+            
+        </div>
+        <div class="form-group">
+            <input type="button" @click="postComment" value="发表评论"　class="btn btn-primary">
+        </div>
+    </div>
+</template>
+</body>
+<script>
+    var commentBox = {
+        data(){
+            return { 
+                content: "",
+                user: ""
+            }
+        },
+        template:'#tmpl',
+        methods:{
+            postComment(){
+                
+            }
+         }
+    }
+    var vm  = new Vue({
+        el: '#app',
+        data: {
+            list:[
+                {id: Date.now(),user: '李白', content: '诗人'},
+                {id: Date.now(),user: '李白1', content: '诗人'},
+                {id: Date.now(),user: '李白2', content: '诗人'},
+            ]
+        },
+        components: {
+            'cmt-box':commentBox
+        }
+    })
+</script>
+</html>
