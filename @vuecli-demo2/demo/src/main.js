@@ -36,7 +36,12 @@ Vue.component(SwipeItem.name, SwipeItem);
 
 
 Vue.config.productionTip = false
-
+//导入格式化时间插件
+import moment from 'moment'
+//定义全局的过滤器
+Vue.filter('dateFormat',function(dataStr,pattern = 'YYYY-MM-DD HH:mm:ss'){
+  return moment(dataStr).format(pattern)
+})
 
 //实例化
 new Vue({
