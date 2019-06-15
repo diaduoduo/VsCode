@@ -1,8 +1,14 @@
+//入口文件
 import Vue from 'vue'
+//导入路由的包
 import Router from 'vue-router'
 import Home from './views/Home.vue'
 import Vueadmin from './views/vueadmin.vue'
-
+import HomeContaniner from './views/tabbar/HomeContaniner.vue'
+import MemberContainer from './views/tabbar/MemberContainer.vue'
+import SearchContainer from './views/tabbar/SearchContainer.vue'
+import ShopcarContainer from './views/tabbar/ShopcarContainer.vue'
+//安装路由
 Vue.use(Router)
 
 export default new Router({
@@ -12,7 +18,7 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      component: Home
+      component: HomeContaniner
     },
     {
       path: '/about',
@@ -27,5 +33,19 @@ export default new Router({
       name: 'vueadmin',
       component: Vueadmin
     },
-  ]
+    {
+      path: '/homei',
+      component: HomeContaniner
+    }, {
+      path: '/member',
+      component: MemberContainer
+    },{
+      path: '/shopcar',
+      component: ShopcarContainer,
+    },{
+      path: '/set',
+      component: SearchContainer,
+    }
+  ],
+  linkActiveClass: 'mui-active' //覆盖默认的路由高亮的类，默认的类叫做router-link-active
 })

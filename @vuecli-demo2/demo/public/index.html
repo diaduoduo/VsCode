@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
     <script src="https://cdn.staticfile.org/vue-resource/1.5.1/vue-resource.min.js"></script>
+    <link rel="stylesheet" href="../src/assets/css/com.css">
     <title>demo</title>
   </head>
   <body>
@@ -15,4 +16,28 @@
     <div id="app"></div>
     <!-- built files will be auto injected -->
   </body>
+  <script>
+    /* 
+    设计图一般是750px的，这样相当于100px = 1rem，可以方便计算；
+
+    因为是750px所以应限制下页面的大小，所以最外层的盒子应该是：
+
+    position: relative;
+
+    width: 100%;
+
+    max-width:750px;
+
+    min-width: 320px;
+
+    margin: 0 auto;
+    
+    */
+      function setRem() {
+      document.documentElement.style.fontSize = document.documentElement.clientWidth / 7.5 + "px";
+      }
+
+      setRem();
+      window.onresize = setRem;
+  </script>
 </html>
