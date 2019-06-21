@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="Home">
     <mt-swipe :auto="4000">
       <mt-swipe-item v-for="item in lunbotuList" :key="item.url">
         <img :src="item.image" alt>
@@ -14,47 +14,54 @@
     <ul class="mui-table-view mui-grid-view mui-grid-9 grid_list">
       <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
         <router-link to="/home/newslist">
-          <img src="../../assets/images/menu1.png" alt="">
+          <img src="../../assets/images/menu1.png" alt>
           <div class="mui-media-body">新闻咨询</div>
         </router-link>
       </li>
       <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-        <a href="#">
-          <img src="../../assets/images/menu6.png" alt="">
+        <router-link to="/home/photolist">
+          <img src="../../assets/images/menu6.png" alt>
           <div class="mui-media-body">图片分享</div>
-        </a>
+        </router-link>
       </li>
       <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
         <a href="#">
-         <img src="../../assets/images/menu2.png" alt="">
+          <img src="../../assets/images/menu2.png" alt>
           <div class="mui-media-body">商品购买</div>
         </a>
       </li>
       <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
         <a href="#">
-         <img src="../../assets/images/menu3.png" alt="">
+          <img src="../../assets/images/menu3.png" alt>
           <div class="mui-media-body">留言反馈</div>
         </a>
       </li>
       <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
         <a href="#">
-          <img src="../../assets/images/menu4.png" alt="">
+          <img src="../../assets/images/menu4.png" alt>
           <div class="mui-media-body">视频专区</div>
         </a>
       </li>
       <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
         <a href="#">
-        <img src="../../assets/images/menu5.png" alt="">
+          <img src="../../assets/images/menu5.png" alt>
           <div class="mui-media-body">联系我们</div>
         </a>
       </li>
     </ul>
+    <comment-btn></comment-btn>
   </div>
 </template>
 
 <script>
+//导入评论子组件
+//import commentBtn from "@/components/subcomponents/commentBtn";
 import { Toast } from "mint-ui";
 export default {
+  name: "Home",
+/*   components: {
+    commentBtn
+  }, */
   data() {
     return {
       lunbotuList: []
@@ -63,6 +70,7 @@ export default {
   created() {
     this.getLunbotu();
   },
+  
   methods: {
     getLunbotu() {
       this.axios
@@ -77,7 +85,8 @@ export default {
           console.log(response);
         });
     }
-  }
+  },
+
 };
 </script>
 
@@ -97,13 +106,13 @@ export default {
   }
 }
 .mui-grid-view.mui-grid-9 {
-    background-color:white;
+  background-color: white;
 }
-.mui-grid-view.mui-grid-9 li{
-    border:none;
+.mui-grid-view.mui-grid-9 li {
+  border: none;
 }
-.grid_list li img{
-    width: 60px;
-    height: 60px;;
+.grid_list li img {
+  width: 60px;
+  height: 60px;
 }
 </style>

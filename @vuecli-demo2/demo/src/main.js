@@ -27,11 +27,17 @@ import './assets/mui/css/icons-extra.css'
 */
 
 // 按需引入部分组件
-import {Header,Swipe,SwipeItem} from 'mint-ui'
+import {Header,Swipe,SwipeItem,Button} from 'mint-ui'
 Vue.component(Header.name, Header);
 Vue.component(Swipe.name, Swipe);
 Vue.component(SwipeItem.name, SwipeItem);
+Vue.component(Button.name, Button);
 
+
+
+
+import commentBtn from "./components/subcomponents/commentBtn";
+Vue.component("commentBtn", commentBtn);
 
 
 

@@ -2,7 +2,7 @@
 import Vue from 'vue'
 //导入路由的包
 import Router from 'vue-router'
-import Home from './views/Home.vue'
+//import Home from './views/Home.vue'
 import Vueadmin from './views/vueadmin.vue'
 import HomeContaniner from './views/tabbar/HomeContaniner.vue'
 import MemberContainer from './views/tabbar/MemberContainer.vue'
@@ -10,6 +10,7 @@ import SearchContainer from './views/tabbar/SearchContainer.vue'
 import ShopcarContainer from './views/tabbar/ShopcarContainer.vue'
 import NewList from './views/news/NewList.vue'
 import NewInfo from './views/news/NewInfo.vue'
+import PhotoList from './views/photos/PhotoList.vue'
 //安装路由
 Vue.use(Router)
 
@@ -53,6 +54,9 @@ export default new Router({
     },{
       path: '/home/newsinfo/:id',
       component: NewInfo,
+    },{
+      path: '/home/photolist',
+      component: PhotoList
     }
   ],
   linkActiveClass: 'mui-active' //覆盖默认的路由高亮的类，默认的类叫做router-link-active

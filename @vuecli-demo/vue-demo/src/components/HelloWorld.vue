@@ -1,41 +1,76 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
-    <p>
-      For a guide and recipes on how to configure / customize this project,<br>
-      check out the
-      <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
-    </p>
-    <h3>Installed CLI Plugins</h3>
-    <ul>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-typescript" target="_blank" rel="noopener">typescript</a></li>
-    </ul>
-    <h3>Essential Links</h3>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank" rel="noopener">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank" rel="noopener">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank" rel="noopener">Twitter</a></li>
-      <li><a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a></li>
-    </ul>
-    <h3>Ecosystem</h3>
-    <ul>
-      <li><a href="https://router.vuejs.org" target="_blank" rel="noopener">vue-router</a></li>
-      <li><a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a></li>
-      <li><a href="https://github.com/vuejs/vue-devtools#vue-devtools" target="_blank" rel="noopener">vue-devtools</a></li>
-      <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
-    </ul>
+    <!-- <h1>{{ msg }}</h1> -->
+    <p>{{msg2}}</p>
+    <button @click="setMsg">改了之后</button>
+    <HelloWorld ref="header"  :title="title" v-if="flag"></HelloWorld>
+    <button @click="flag = !flag">点击销毁</button>
+    <button @click="getpose">点击跳转</button>
+
   </div>
 </template>
 
-<script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
+<script>
+import HelloWorld from '@/components/life.vue'; // @ is an alias to /src
+/* import { Component, Prop, Vue } from "vue-property-decorator"; */
+export default {
+  data(){
+    return {
+      msg2:'msg2',
+      flag:true,
+      title:"duoduo"
+    }
+  },
+  components: {
+    HelloWorld,
+  },
+  methods:{
+    setMsg(){
+      this.msg2="改了之后"
+    },
+    getpose(){
+      this.$router.push({
+        path:'/about'
+      })
+    }
+  },
+  getChildDate(){
+    this.$refs.header.run();//zhuf
+  },
+  beforeCreate(){
+    console.log("实例刚刚被创建1")
+  },
+  creadted(){
+    console.log("实例已经创建完成2")
+  },
+  beforeMount(){
+    console.log("模板编译之前3")
+  },
+  mounted(){
+    console.log("模板编译完成4")
+  },
+  beforeUpdate(){
+    console.log("数据更新之前")
+  },
+  updated(){
+    console.log("数据更新完毕")
+  },
+  beforeDestroy() {
+    console.log("实例销毁之前")
+  },
+  destroyed() {
+    console.log("实例销毁完成")
+  },
+}
 
-@Component
+
+
+
+
+/* @Component
 export default class HelloWorld extends Vue {
   @Prop() private msg!: string;
-}
+} */
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
