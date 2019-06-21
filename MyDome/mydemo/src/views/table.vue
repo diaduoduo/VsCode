@@ -1,6 +1,7 @@
 <template>
   <div>
     <div>
+
       <SearchGrounp></SearchGrounp>
     </div>
     <el-table :data="tableData" style="width: 100%">
@@ -30,6 +31,7 @@ import SearchGrounp from "@/components/SearchGrounp.vue";
 export default {
   data() {
     return {
+      title:"duoduo",
       tableData: [
         {
           date: "2016-05-02",

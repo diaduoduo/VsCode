@@ -1,5 +1,6 @@
 <template>
     <div>
+        {{title}}dfgdfg
         <el-row :gutter="20">
         <el-col :span="6">
             <div class="grid-content bg-purple">
@@ -27,10 +28,12 @@
         methods:{
             search_btn(){
                 alert("sdf");
-                console.log($router.data)
+               // console.log(this.data)
             }
         },
-        props: ['data'],
+        props:{
+            "title":String
+        }
     }
 </script>
 
