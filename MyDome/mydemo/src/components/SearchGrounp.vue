@@ -28,11 +28,14 @@
         methods:{
             search_btn(){
                 alert("sdf");
-               // console.log(this.data)
+                console.log(this.data)
             }
         },
         props:{
-            "title":String
+            "title":String,
+            data:{
+                type:Array,
+            }
         }
     }
 </script>
