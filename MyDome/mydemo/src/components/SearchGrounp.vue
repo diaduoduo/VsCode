@@ -10,7 +10,7 @@
         <el-row :gutter="20">
         <el-col :span="6">
             <div class="grid-content bg-purple">
-               <el-input v-model="ExaminerApprover" placeholder="请输入审批人"></el-input>
+               <el-input v-model="keywords" placeholder="请输入审批人"></el-input>
             </div>
         </el-col>
 
@@ -40,25 +40,25 @@
         },
         methods:{
             search(keywords){
-                    alert(this.keywords)
                 var newList = []
-                for(let i= 0; i< this.tableData.length; i++){
-                   //console.log( this.tableData[i].name)
-                   var newList = this.tableData.filter(tableData =>{
-                       console.log(this.tableData[i].name)
-                       console.log(keywords)
-                       if(this.tableData[i].name.includes(keywords)){
-                           //alert(this.tableData[i].name)
-                          // console.log("1")
-                       } else {
-                            console.log("2")
-                       }
-                   })
-                   //return newList
-                   
-                }
-/*                 var newList = this.tableData
-               console.log(this.tableData) */
+/*                 .flter(tb =>(tb.name.inclues(keyword));
+                var newList = this.tableData.filter(tableData =>(tableData.name.includes(keywords)));
+                var newList = this.tableData.filter(tableData.name =>(tableData.name.inclues(keyword)) */
+
+                var newList =  this.tableData.filter(tableData =>(tableData.name.includes(keywords)))
+
+                        console.log(newList)
+                        this.$emit()
+                       // this.$emit(newList)
+/*                 var newList = this.tableData.filter(tableData =>{
+                    for (let i=0; i<this.tableData.length;i++){
+                        if(this.tableData[i].name.includes(keywords)){
+                          this.tableData[i].name="duoduo"
+                            console.log(this.tableData[i].name)
+                        }
+                    }   
+                })
+                return newList */
             },
 /*             poped(){
           console.log(this.tableData.name)
