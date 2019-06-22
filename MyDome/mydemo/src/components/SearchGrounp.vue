@@ -40,17 +40,21 @@
         },
         methods:{
             search(keywords){
-                alert("sdf")
+                    alert(this.keywords)
                 var newList = []
                 for(let i= 0; i< this.tableData.length; i++){
                    //console.log( this.tableData[i].name)
                    var newList = this.tableData.filter(tableData =>{
+                       console.log(this.tableData[i].name)
+                       console.log(keywords)
                        if(this.tableData[i].name.includes(keywords)){
                            //alert(this.tableData[i].name)
-                            return this.tableData
+                          // console.log("1")
+                       } else {
+                            console.log("2")
                        }
                    })
-                   return newList
+                   //return newList
                    
                 }
 /*                 var newList = this.tableData
