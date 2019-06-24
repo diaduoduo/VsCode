@@ -6,9 +6,14 @@
           <i class="el-icon-setting"></i>
           <span>table简单</span>
         </router-link>
-        <router-link to="/table" tag="el-menu-item">
+        <router-link to="/List" tag="el-menu-item">
           <i class="el-icon-setting"></i>
           <span>table组件</span>
+        </router-link>
+
+        <router-link to="/table" tag="el-menu-item">
+          <i class="el-icon-setting"></i>
+          <span>table</span>
         </router-link>
         <router-link to="/vmodel" tag="el-menu-item">
           <i class="el-icon-setting"></i>
