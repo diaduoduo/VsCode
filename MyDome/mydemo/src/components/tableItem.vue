@@ -1,8 +1,5 @@
 <template>
   <div>
-    <div>
-      <SearchGrounp :msg="msg" :data="tableData" :list="lists" :tableData="tableData"></SearchGrounp>
-    </div>
     <el-table :data="tableData" style="width: 100%">
     <el-table-column label="日期">
       <template slot-scope="scope">
@@ -33,9 +30,6 @@ export default {
       lists : {name:'父组件文字',age:26},
       tableData: []
     };
-  },
-  components:{
-    SearchGrounp
   },
   created() {
     this.getNewLsit();

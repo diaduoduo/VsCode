@@ -4,16 +4,16 @@
       <el-menu>
         <router-link to="/tableSimple" tag="el-menu-item">
           <i class="el-icon-setting"></i>
-          <span>table简单</span>
+          <span>table</span>
         </router-link>
         <router-link to="/List" tag="el-menu-item">
           <i class="el-icon-setting"></i>
-          <span>table组件</span>
+          <span>table组件+搜索组件</span>
         </router-link>
 
         <router-link to="/table" tag="el-menu-item">
           <i class="el-icon-setting"></i>
-          <span>table</span>
+          <span>table页面+搜索组件</span>
         </router-link>
         <router-link to="/vmodel" tag="el-menu-item">
           <i class="el-icon-setting"></i>

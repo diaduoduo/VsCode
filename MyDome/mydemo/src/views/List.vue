@@ -1,18 +1,23 @@
 <template>
     <div>
-        <search-grounp></search-grounp>
-        <table-list></table-list>
-        sdfsdf
+        <search-grounp :searchMsg="searchMsg"></search-grounp>
+        <table-list :tableMsg="tableMsg"></table-list>
     </div>
 </template>
 
 <script>
 import SearchGrounp from "@/components/SearchItem.vue";
-import tableList from "@/components/tableItem.vue";
+import TableList from "@/components/tableItem.vue";
     export default {
+        data(){
+            return {
+                searchMsg:'',
+                tableMsg:''
+            }
+        },
         components:{
-           SearchGrounp,
-            tableList
+            SearchGrounp,
+            TableList
         }
     }
 </script>

@@ -4,6 +4,7 @@ import Home from './views/Home.vue'
 import table from './views/table.vue'
 import vmodel from './views/vmodel.vue'
 import tableSimple from './views/tableSimple.vue'
+import List from './views/List.vue'
 
 Vue.use(Router)
 
@@ -39,6 +40,11 @@ export default new Router({
       name: 'tableSimple',
       component: tableSimple
     },
+   {
+     path: '/List',
+     name: 'List',
+     component: List
+   },
   ],
-  // linkActiveClass: 'mui-active' //覆盖默认的路由高亮的类，默认的类叫做router-link-active
+   linkActiveClass: 'active' //覆盖默认的路由高亮的类，默认的类叫做router-link-active
 })

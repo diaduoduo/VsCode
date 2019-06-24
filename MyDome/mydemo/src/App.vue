@@ -55,7 +55,10 @@ export default {
   background-color: #fff;
   color: #333;
 }
-
+.active {
+  outline: 0;
+  background-color: #ecf5ff;
+}
 body > .el-container {
   margin-bottom: 40px;
 }
