@@ -45,9 +45,12 @@
                 var newList = this.tableData.filter(tableData =>(tableData.name.includes(keywords)));
                 var newList = this.tableData.filter(tableData.name =>(tableData.name.inclues(keyword)) */
 
-                var newList =  this.tableData.filter(tableData =>(tableData.name.includes(keywords)))
+                var newList =  this.tableData.filter(tableData =>(tableData.title.includes(keywords)))
 
                         console.log(newList)
+//this.tableData=newList
+                        console.log(this.$emit('this.tableData',newList))
+
                       //  this.$emit()
                        // this.$emit(newList)
 /*                 var newList = this.tableData.filter(tableData =>{

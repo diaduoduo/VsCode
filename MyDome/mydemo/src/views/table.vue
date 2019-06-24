@@ -7,12 +7,12 @@
     <el-table-column label="日期">
       <template slot-scope="scope">
         <i class="el-icon-time"></i>
-        <span style="margin-left: 10px">{{ scope.row.date }}</span>
+        <span style="margin-left: 10px">{{ scope.row.pubdate }}</span>
       </template>
     </el-table-column>
     <el-table-column label="审批人">
       <template slot-scope="scope">
-        <p>{{ scope.row.name }}</p>
+        <p>{{ scope.row.title }}</p>
       </template>
     </el-table-column>
     <el-table-column label="操作">
@@ -32,57 +32,31 @@ export default {
     return {
       msg:"duoduo",
       lists : {name:'父组件文字',age:26},
-      tableData: [
-        {
-          date: "2016-05-02",
-          name: "王小虎1",
-          address: "上海市普陀区金沙江路 1518 弄"
-        },
-        {
-          date: "2016-05-02",
-          name: "王小虎1",
-          address: "上海市普陀区金沙江路 1518 弄"
-        },
-        {
-          date: "2016-05-04",
-          name: "王小虎2",
-          address: "上海市普陀区金沙江路 1517 弄"
-        },
-        {
-          date: "2016-05-01",
-          name: "王小虎3",
-          address: "上海市普陀区金沙江路 1519 弄"
-        },
-        {
-          date: "2016-05-03",
-          name: "王小虎4",
-          address: "上海市普陀区金沙江路 1516 弄"
-        },
-        {
-          date: "2016-05-03",
-          name: "duoduo",
-          address: "上海市普陀区金沙江路 1516 弄"
-        },
-        {
-          date: "2016-05-03",
-          name: "duoduo",
-          address: "上海市普陀区金沙江路 1516 弄"
-        },
-        {
-          date: "2016-05-03",
-          name: "duoduo",
-          address: "上海市普陀区金沙江路 1516 弄"
-        },
-        {
-          date: "2016-05-03",
-          name: "haohao",
-          address: "上海市普陀区金沙江路 1516 弄"
-        },
-      ]
+      tableData: []
     };
   },
   components:{
     SearchGrounp
+  },
+  created() {
+    this.getNewLsit();
+  },
+    methods: {
+    getNewLsit() {
+      this.axios
+        .get("http://api.komavideo.com/news/list")
+        .then(response => {
+          console.log(response.data);
+          this.tableData = response.data;
+            this.$message({
+              message: '加载成功',
+              type: 'success'
+            });
+        })
+        .catch(function() {
+          this.$message.error('加载失败');
+        });
+    }
   }
 };
 </script>
