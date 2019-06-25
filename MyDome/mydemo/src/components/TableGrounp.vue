@@ -1,7 +1,7 @@
 <template>
   <div>
     <div>
-      <SearchGrounp :msg="msg" :data="tableData" :list="lists" :tableData="tableData"></SearchGrounp>
+      <search-grounp :msg="msg" :data="tableData" :list="lists" :tableData="tableData" v-on:listentoEvent="tableDataChild"></search-grounp>
     </div>
     <el-table :data="tableData" style="width: 100%">
     <el-table-column label="日期">
@@ -47,14 +47,18 @@ export default {
         .then(response => {
           console.log(response.data);
           this.tableData = response.data;
-            this.$message({
+/*             this.$message({
               message: '加载成功',
               type: 'success'
-            });
+            }); */
         })
         .catch(function() {
           this.$message.error('加载失败');
         });
+    },
+    tableDataChild(data){
+       this.tableData = data
+
     }
   }
 };

@@ -41,27 +41,14 @@
         methods:{
             search(keywords){
                 var newList = []
-/*                 .flter(tb =>(tb.name.inclues(keyword));
-                var newList = this.tableData.filter(tableData =>(tableData.name.includes(keywords)));
-                var newList = this.tableData.filter(tableData.name =>(tableData.name.inclues(keyword)) */
-
                 var newList =  this.tableData.filter(tableData =>(tableData.title.includes(keywords)))
+                       // console.log(newList)
+                    //this.tableData=newList
+                   // this.$emit('listentoEvent',newList)
+                        //console.log(this.$emit('listentoEvent',newList))
 
-                        console.log(newList)
-//this.tableData=newList
-                        console.log(this.$emit('this.tableData',newList))
+                        this.$emit('listentoEvent',newList);
 
-                      //  this.$emit()
-                       // this.$emit(newList)
-/*                 var newList = this.tableData.filter(tableData =>{
-                    for (let i=0; i<this.tableData.length;i++){
-                        if(this.tableData[i].name.includes(keywords)){
-                          this.tableData[i].name="duoduo"
-                            console.log(this.tableData[i].name)
-                        }
-                    }   
-                })
-                return newList */
             },
 /*             poped(){
           console.log(this.tableData.name)
