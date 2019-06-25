@@ -1,7 +1,7 @@
 <template>
   <div>
     <div>
-      <SearchGrounp :msg="msg" :data="tableData" :list="lists" :tableData="tableData"></SearchGrounp>
+      <SearchGrounp :msg="msg" :data="tableData" :list="lists" :tableData="tableData" v-on:listentoEvent="tableDataChild"></SearchGrounp>
     </div>
     <el-table :data="tableData" style="width: 100%">
     <el-table-column label="日期">
@@ -13,12 +13,6 @@
     <el-table-column label="审批人">
       <template slot-scope="scope">
         <p>{{ scope.row.title }}</p>
-      </template>
-    </el-table-column>
-    <el-table-column label="操作">
-      <template slot-scope="scope">
-        <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
-        <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
       </template>
     </el-table-column>
   </el-table> 
@@ -56,6 +50,10 @@ export default {
         .catch(function() {
           this.$message.error('加载失败');
         });
+    },
+    tableDataChild(data){
+       this.tableData = data
+
     }
   }
 };

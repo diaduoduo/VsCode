@@ -40,13 +40,14 @@
         },
         methods:{
             search(keywords){
+                if (this.keywords == "") {
+                    this.$message.error("查询条件不能为空！");
+                    return;
+                }
+                
                 var newList = []
                 var newList =  this.tableData.filter(tableData =>(tableData.title.includes(keywords)))
-                       // console.log(newList)
-                    //this.tableData=newList
-                   // this.$emit('listentoEvent',newList)
-                        //console.log(this.$emit('listentoEvent',newList))
-
+                console.log(newList)
                         this.$emit('listentoEvent',newList);
 
             },

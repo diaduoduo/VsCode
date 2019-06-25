@@ -26,6 +26,7 @@
 </template>
 
 <script>
+import searchGrounp from "@/components/searchGrounp.vue";
 export default {
   data() {
     return {
@@ -57,6 +58,7 @@ export default {
         });
     },
     tableDataChild(data){
+      alert("sdf")
        this.tableData = data
 
     }

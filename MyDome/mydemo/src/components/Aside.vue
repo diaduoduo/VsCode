@@ -6,10 +6,10 @@
           <i class="el-icon-setting"></i>
           <span>table</span>
         </router-link>
-        <router-link to="/List" tag="el-menu-item">
+<!--         <router-link to="/List" tag="el-menu-item">
           <i class="el-icon-setting"></i>
           <span>table组件+搜索组件</span>
-        </router-link>
+        </router-link> -->
 
         <router-link to="/table" tag="el-menu-item">
           <i class="el-icon-setting"></i>
