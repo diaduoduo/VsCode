@@ -36,7 +36,7 @@ app.get('/api/articles',async(req,res) =>{
 app.get('/api/articles／:id', async (req, res) => {
     await Article.findByIdAndDelete(req.params.id)
     res.send({
-        stata:true
+        status:true
     })
 })
 

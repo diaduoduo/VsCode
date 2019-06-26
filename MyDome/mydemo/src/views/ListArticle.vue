@@ -28,6 +28,7 @@
               })
           },
           remove(id){
+			  //ex6　的模板字符串
             this.$http.delete(`articles/$(id`).then(res =>{
               this.$message({
                 message: "文章删除成功",
