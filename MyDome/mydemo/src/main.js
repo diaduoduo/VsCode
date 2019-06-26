@@ -24,8 +24,13 @@ import 'element-ui/lib/theme-chalk/index.css'
 /* +++++ Axios 组件的引用 S+++++ */
 import axios from 'axios'
 import VueAxios from 'vue-axios'
+Vue.prototype.$http = axios.create({
+  baseURL: 'http://localhost:3001/api'
+})
 Vue.use(VueAxios,axios)
 /* +++++ Axios 组件的引用 E+++++ */
+
+
 
 
 //导入格式化时间插件
