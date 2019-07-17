@@ -42,7 +42,7 @@ Vue.component("commentBtn", commentBtn);
 
 
 Vue.config.productionTip = false
-//导入格式化时间插件
+//导入格式化时间插件  npm i moment -S
 import moment from 'moment'
 //定义全局的过滤器
 Vue.filter('dateFormat',function(dataStr,pattern = 'YYYY-MM-DD HH:mm:ss'){

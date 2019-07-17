@@ -190,7 +190,8 @@ export default {
       //　根据判断的值　编写业务逻辑
       if (isHave) {
         //改变列表中商品数量
-        let arr = this.tableData.filter(a => a.goodsId == goods.goodsId);
+		let arr = this.tableData.filter(a => a.goodsId == goods.goodsId);
+		console.log(arr)
         arr[0].count++;
       } else {
         let newGoods = {
